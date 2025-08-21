@@ -39,6 +39,6 @@ function formatTime(minutes) {
   return `${doubleDigitHours}:${doubleDigitMinutes}`;
   // return рядок у форматі "ГГ:ХХ" (наприклад, "07:30")
 }
-console.log(formatTime(70)); // "01:10"
-console.log(formatTime(450)); // "07:30"
-console.log(formatTime(1441)); // "24:01"
+// console.log(formatTime(70)); // "01:10"
+// console.log(formatTime(450)); // "07:30"
+// console.log(formatTime(1441)); // "24:01"
