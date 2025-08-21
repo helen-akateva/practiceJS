@@ -140,3 +140,6 @@ vite.config.ts.timestamp-*
  
  # pull requests list
 list.txt
+
+ # pull requests  list2
+  list2.txt
