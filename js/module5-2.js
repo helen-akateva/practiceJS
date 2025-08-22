@@ -138,19 +138,21 @@ const getAverageGrade = students => {
 
 // Тестові дані
 // const students = [
-// { name: "Олексій", age: 20, grade: 85 },
-// { name: "Марія", age: 19, grade: 92 },
-// { name: "Дмитро", age: 21, grade: 78 },
-// { name: "Анна", age: 20, grade: 95 }
+//   { name: 'Олексій', age: 20, grade: 85 },
+//   { name: 'Марія', age: 19, grade: 92 },
+//   { name: 'Дмитро', age: 21, grade: 78 },
+//   { name: 'Анна', age: 20, grade: 95 },
 // ];
 
 // Твоя функція тут:
-// const sortStudentsByGradeDesc =
-
+const sortStudentsByGradeDesc = students =>
+  students.toSorted(
+    (firstStudent, secondStudent) => secondStudent.grade - firstStudent.grade
+  );
 // Перевірка:
 // console.log(sortStudentsByGradeDesc(students));
-// Очікуваний результат: студенти відсортовані за спаданням оцінок
-// console.log("Оригінальний масив не змінився:", students);
+// // Очікуваний результат: студенти відсортовані за спаданням оцінок
+// console.log('Оригінальний масив не змінився:', students);
 
 //     Задача 8:
 // FlatMap - Отримати всі хобі студентів
@@ -158,15 +160,14 @@ const getAverageGrade = students => {
 
 // Тестові дані
 // const students = [
-// { name: "Олексій", hobbies: ["футбол", "програмування"] },
-// { name: "Марія", hobbies: ["малювання", "читання", "танці"] },
-// { name: "Дмитро", hobbies: ["музика"] },
-// { name: "Анна", hobbies: ["спорт", "кулінарія"] }
+//   { name: 'Олексій', hobbies: ['футбол', 'програмування'] },
+//   { name: 'Марія', hobbies: ['малювання', 'читання', 'танці'] },
+//   { name: 'Дмитро', hobbies: ['музика'] },
+//   { name: 'Анна', hobbies: ['спорт', 'кулінарія'] },
 // ];
 
 // Твоя функція тут:
-// const getAllHobbies =
-
+const getAllHobbies = students => students.flatMap(student => student.hobbies);
 // Перевірка:
 // console.log(getAllHobbies(students));
 // Очікуваний результат: ["футбол", "програмування", "малювання", "читання", "танці", "музика", "спорт", "кулінарія"]
@@ -177,16 +178,19 @@ const getAverageGrade = students => {
 
 // Тестові дані
 // const students = [
-// { name: "Олексій", age: 22, grade: 85 },
-// { name: "Марія", age: 19, grade: 92 },
-// { name: "Дмитро", age: 21, grade: 78 },
-// { name: "Анна", age: 20, grade: 95 },
-// { name: "Петро", age: 18, grade: 88 }
+//   { name: 'Олексій', age: 22, grade: 85 },
+//   { name: 'Марія', age: 19, grade: 92 },
+//   { name: 'Дмитро', age: 21, grade: 78 },
+//   { name: 'Анна', age: 20, grade: 95 },
+//   { name: 'Петро', age: 18, grade: 88 },
 // ];
 
 // Твоя функція тут:
-// const getTopYoungStudents =
-
+const getTopYoungStudents = (students, maxAge, minGrade) =>
+  students
+    .filter(student => student.age < maxAge && student.grade >= minGrade)
+    .map(student => student.name)
+    .toSorted();
 // Перевірка:
 // console.log(getTopYoungStudents(students, 21, 85));
 // Очікуваний результат: ["Анна", "Марія", "Петро"] (відсортовані за іменем)
@@ -196,18 +200,28 @@ const getAverageGrade = students => {
 // Напиши стрілочну функцію getGroupStats(students), яка повертає об'єкт зі статистикою групи: кількість студентів, середній вік, найвища оцінка, найменша оцінка.
 
 // Тестові дані
-// const students = [
-// { name: "Олексій", age: 20, grade: 85 },
-// { name: "Марія", age: 19, grade: 92 },
-// { name: "Дмитро", age: 21, grade: 78 },
-// { name: "Анна", age: 20, grade: 95 }
-// ];
+const students = [
+  { name: 'Олексій', age: 20, grade: 85 },
+  { name: 'Марія', age: 19, grade: 92 },
+  { name: 'Дмитро', age: 21, grade: 78 },
+  { name: 'Анна', age: 20, grade: 95 },
+];
 
 // Твоя функція тут:
-// const getGroupStats =
+const getGroupStats = students => {
+  const totalAge = students.reduce((sum, student) => sum + student.age, 0);
+  const grades = students.map(student => student.grade);
+
+  return {
+    count: students.length,
+    averageAge: totalAge / students.length,
+    maxGrade: Math.max(...grades),
+    minGrade: Math.min(...grades),
+  };
+};
 
 // Перевірка:
-// console.log(getGroupStats(students));
+console.log(getGroupStats(students));
 // Очікуваний результат:
 // {
 // count: 4,
